@@ -1,1 +1,54 @@
+clc;
+clear;
+close all;
 
+% AI-Assisted Healthcare Diagnosis Workflow
+
+numPatients = 10;
+
+% Simulated Health Score Data
+healthScore = randi([40 100],1,numPatients);
+
+% AI Diagnosis
+diagnosis = strings(1,numPatients);
+
+for i = 1:numPatients
+    if healthScore(i) >= 70
+        diagnosis(i) = "Healthy";
+    else
+        diagnosis(i) = "Needs Attention";
+    end
+end
+
+disp('Health Scores');
+disp(healthScore);
+
+disp('AI Diagnosis');
+disp(diagnosis');
+
+% Count Categories
+healthyCount = sum(healthScore >= 70);
+attentionCount = sum(healthScore < 70);
+
+% Visualization
+figure;
+
+subplot(2,1,1);
+bar(healthScore);
+title('Patient Health Scores');
+xlabel('Patient ID');
+ylabel('Health Score');
+grid on;
+
+subplot(2,1,2);
+pie([healthyCount attentionCount], ...
+    {'Healthy','Needs Attention'});
+title('AI Diagnosis Results');
+
+% Wireless Communication Flow
+figure;
+plot(1:numPatients,healthScore,'-o','LineWidth',2);
+title('Wireless Transmission to AI Diagnosis Center');
+xlabel('Patient ID');
+ylabel('Health Score');
+grid on;
